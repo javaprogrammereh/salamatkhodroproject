@@ -1,0 +1,404 @@
+{
+	"info": {
+		"_postman_id": "d5f733af-b62c-4e1d-8f27-24da324c5499",
+		"name": "TaskHenrito",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7551369"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "car",
+					"item": [
+						{
+							"name": "CreatCar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"faName\":\"faName\",\r\n      \"enName\":\"enName\",\r\n      \"slug\":\"slug\",\r\n      \"logo\":\"logo\",\r\n      \"description\":\"description\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/cars/create-car",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"create-car"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteCar",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/cars/delete-post/62dbd75680e67081d5ff8707",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"delete-post",
+										"62dbd75680e67081d5ff8707"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetCars",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/cars/get-cars",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"get-cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SingleCar",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/cars/single-car/62dbde07ddde9a25b4c86a9d",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"single-car",
+										"62dbde07ddde9a25b4c86a9d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateCar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"faName\":\"faNamev\",\r\n      \"enName\":\"enNamev\",\r\n      \"slug\":\"slugvbnjklsjdc\",\r\n      \"logo\":\"logodkdks\",\r\n      \"description\":\"descriptionkdjsflsh\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/cars/update-car/62dbd35116fbbcaa9d507219",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"update-car",
+										"62dbd35116fbbcaa9d507219"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "brands",
+					"item": [
+						{
+							"name": "CreateBrand",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "64beb63340d224f6fe2207412c7af7f0f092b523d350f65ce846e4e46a7f54c4a0badd14",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\":\"benz\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/admin/create-brand",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"create-brand"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetBrands",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/admin/select-brands",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"select-brands"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteBrand",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/admin/delete-brand/62dbfc3c02ea8e356ddeb256",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"delete-brand",
+										"62dbfc3c02ea8e356ddeb256"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateBrand",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\":\"iran-khodro\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/admin/update-brand/62dc03e319cb7f7b7bc54b72",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"update-brand",
+										"62dc03e319cb7f7b7bc54b72"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SingleBrand",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/admin/single-brand/62dc03e319cb7f7b7bc54b72",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"single-brand",
+										"62dc03e319cb7f7b7bc54b72"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n          \"name\": \"hassan\",\r\n          \"username\": \"hassan\",\r\n          \"email\": \"hassan@gmail.com\",\r\n          \"password\": \"789\",\r\n          \"role\": \"user\",\r\n          \"provider\": \"provider\",\r\n          \"mobile\": \"0912182470444\",\r\n          \"contact\": \"contact\",\r\n          \"credit\": \"123\",\r\n          \"accessToken\": \"accessToken\",\r\n          \"active\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n           \"username\": \"hassan\",\r\n          \"email\": \"hassan@gmail.com\",\r\n          \"password\": \"789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "GetUsers",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/users/get-users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"get-users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateUser",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "        {\r\n            \"name\": \"eli\",\r\n            \"provider\": \"provider\",\r\n            \"username\": \"eli\",\r\n            \"mobile\": \"091214242222\",\r\n            \"contact\": \"contacted\",\r\n            \"email\": \"eli@gmail.com\",\r\n            \"password\": \"321\"\r\n           \r\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/users/update-users/62dc30871b796bc9d63a7605",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"update-users",
+										"62dc30871b796bc9d63a7605"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

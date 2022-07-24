@@ -10,10 +10,7 @@ const CarSchema = new Schema({
     slug: {type: String, required: true, trim: true},
     logo: {type: String, trim: true},
     description: {type: String, trim: true},
-    brands: [{ type: Schema.Types.ObjectId, ref: "Brand" }],
-    model:[{ type: Schema.Types.ObjectId, ref: "Model" }],
-    style:[{ type: Schema.Types.ObjectId, ref: "Style" }],
-    type:[{ type: Schema.Types.ObjectId, ref: "Type" }]
+    brands: [{ type: Schema.Types.ObjectId, ref: "Brand",required:false }],    
 });
-CarSchema.plugin(uniqueValidator);
+// CarSchema.plugin(uniqueValidator);
 module.exports=mongoose.model("Car",CarSchema);

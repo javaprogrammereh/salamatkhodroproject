@@ -1,18 +1,18 @@
 const config = require("../../../config");
-const User = require(`${config.path.model}/user`);
-const Token = require(`${config.path.model}/token`);
+const User = require(`${config.path.model}/User`);
+const Token = require(`${config.path.model}/Token`);
 const { unauthorized } = require(`${config.path.helper}/response`);
 
 module.exports = async (req, res, next) => {
   try {
     const token = await Token.findOne({ token: req.headers["x-access-token"] }).exec();
-    if (!token) return unauthorized(res, logcode);
-    const user = await User.findOne({ _id: token.userId, type: "superAdmin" }).exec();
-    if (!user) return unauthorized(res, logcode);
+    if (!token) return unauthorized(res);
+    const user = await User.findOne({ _id: token.userId, role: "user" }).exec();
+    if (!user) return unauthorized(res);
     const date = new Date();
     if (token.liveTime < date) {
       await Token.findByIdAndRemove(token._id).exec();
-      return unauthorized(res, logcode);
+      return unauthorized(res);
     } else {
       let values = {};
       const hours = Math.abs(token.liveTime - date) / 36e5;
@@ -28,6 +28,6 @@ module.exports = async (req, res, next) => {
       next();
     }
   } catch (err) {
-    return unauthorized(res, logcode);
+    return unauthorized(res);
   }
 };

@@ -2,7 +2,7 @@ const expiresInUser = process.env.EXPIRESIN_USER_HOUR;
 const expiresInSuperAdmin = process.env.EXPIRESIN_SUPER_ADMIN_HOUR;
 const config = require("../config");
 const { generateToken } = require(`${config.path.helper}/generateToken`);
-const TokenModel = require(`${config.path.model}/token`);
+const Token = require(`${config.path.model}/Token`);
 module.exports.transform = async (result, item, withPaginate = false, type = null, ip = null, deviceName = null) => {
   if (withPaginate) {
     let items = [];
@@ -19,7 +19,7 @@ module.exports.transform = async (result, item, withPaginate = false, type = nul
     }
   } else {
     if (type !== null) {
-      const token = await Token(result, type, ip, deviceName);
+      const token = await TokenCreate(result, type, ip, deviceName);
       return { ...itemTransform(result, item), ...token };
     } else {
       return itemTransform(result, item);
@@ -35,6 +35,33 @@ module.exports.transform = async (result, item, withPaginate = false, type = nul
       }
     }
   }
+  async function TokenCreate(result, type, ip, deviceName) {
+    try {
+      let liveTime = new Date();
+      const token = await generateToken();
+      let values = { userId: result._id, lastIp: ip, deviceName, token };
+      if (type === "user") liveTime.setHours(liveTime.getHours() + Number(expiresInUser));
+      if (type === "admin") liveTime.setHours(liveTime.getHours() + Number(expiresInSuperAdmin));
+      values = { ...values, liveTime };
+      await Token.create(values);
+      return { token };
+    } catch (error) {
+      console.log(error);
+      return { token: null };
+    }
+  }
 
-
+  function paginateItem(result) {
+    return {
+      total: result.totalDocs,
+      limit: result.limit,
+      totalPages: result.totalPages,
+      page: result.page,
+      pagingCounter: result.pagingCounter,
+      hasPrevPage: result.hasPrevPage,
+      hasNextPage: result.hasNextPage,
+      prevPage: result.prevPage,
+      nextPage: result.nextPage,
+    };
+  }
 };

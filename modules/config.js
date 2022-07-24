@@ -4,8 +4,8 @@ module.exports = {
   path: {
     controllersApi: {
       v1: {
-        public: path.resolve("./modules/controllers/api/v1/publicController"),
-        superAdmin: path.resolve("./modules/controllers/api/v1/superAdminController"),
+        user: path.resolve("./modules/controllers/api/v1/UserController"),
+        admin: path.resolve("./modules/controllers/api/v1/AdminController"),
       },
     },
     helper: path.resolve('./modules/helpers'),
@@ -14,4 +14,3 @@ module.exports = {
     controller: path.resolve('./modules/controllers'),
   }
 }
-///

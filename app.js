@@ -1,61 +1,40 @@
 const express = require("express");
-const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const expressValidator = require("express-validator");
-const rateLimit = require("express-rate-limit");
-const cors = require("cors");
-const helmet = require("helmet");
 const hpp = require("hpp");
-const mongoSanitize = require("express-mongo-sanitize");
-require("dotenv").config();
-const port = process.env.APP_PORT;
-const mongodbUrl = process.env.MONGODB_URL;
-const dev = process.env.DEV;
-const releasesV = process.env.RELEASES_V;
+const dotEnv = require('dotenv');
+const connectDB = require('./modules/config/db');
+dotEnv.config({path:"./modules/config/config.env"});
 
 
-// Connect to DB
-mongoose.connect(mongodbUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-});
-
-
-
-app.use("/public", express.static("public"));
+connectDB();
+const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ type: "application/json" }));
 
 
-app.use(expressValidator());
-app.use(helmet());
-app.use(hpp());
-app.use(mongoSanitize());
-app.use(limiter);
+//*routers
+//!   /api/v1/cars/create-car
+//!   /api/v1/cars/delete-post/:id
+//!   /api/v1/cars/get-cars
+//!   /api/v1/cars/single-car/:id
+//!   /api/v1/cars/update-car/:id
+app.use("/api/v1/cars", require("./modules/routes/api/user/api-v1"));
 
-//routers
-const publicApiV1Router = require("./modules/routes/api/public/api-v1");
-const superAdminApiV1Router = require("./modules/routes/api/superAdmin/api-v1");
-app.use("/api/v1", publicApiV1Router);
-app.use("/api/v1/superAdmin", superAdminApiV1Router);
+//!   /api/v1/admin/create-brand
+//!   /api/v1/admin/select-brands
+//!   /api/v1/admin/delete-brand/:id
+//!   /api/v1/admin/update-brand/:id
+//!  /api/v1/admin/single-brand/:id
+//!  /api/v1/auth/register
+//!  /api/v1/auth/login
+//!  /api/v1/users/get-users
+//!  /api/v1/users/update-users/:id
+app.use("/api/v1", require("./modules/routes/api/admin/api-v1"));
 
-app.listen(port, () => {
-  console.log(`Server is running at Port ${port}`);
-});
-app.use(function (err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).send({
-    message: {
-      message: "!خطای سرور",
-      field: null,
-      logcode,
-    },
-    status: 500,
-    success: false,
-    v: releasesV,
-  });
-  next();
+
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running at Port ${PORT}`);
 });
