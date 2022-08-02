@@ -1,16 +1,15 @@
 const config = require("../../../../../config");
-const controller = require(`${config.path.controller}/controller`);
+const controller = require(`${config.path.controller}/Controller`);
 
 const Brand = require(`${config.path.model}/Brand`);
 
-const { transform } = require(`${config.path.helper}/transform`);
-const { response } = require(`${config.path.helper}/response`);
+const { transform } = require(`${config.path.helper}/Transform`);
+const { response } = require(`${config.path.helper}/Response`);
 const itemTransform = ["._id", ".type"];
-module.exports = class initializeController extends controller {
+module.exports = class InitializeController extends controller {
   constructor() {
     super();
-    (this.model = { Brand }, (this.helper = { response, transform, itemTransform }));
- 
+    (this.model = { Brand }),
+      (this.helper = { response, transform, itemTransform });
   }
 };
-///

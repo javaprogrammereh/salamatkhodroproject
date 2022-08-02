@@ -4,30 +4,14 @@ const Controller = require(`${config.path.controller}/controller`);
 const { response } = require(`${config.path.helper}/response`);
 const { transform } = require(`${config.path.helper}/transform`);
 
-const itemTransform = [
-  "._id",
-  ".name",
-  ".provider",
-  ".username",
-  ".mobile",
-  ".contact",
-  ".email",
-  ".password",
-  ".role",
-  ".provider",
-  ".mobile",
-  ".contact",
-  ".credit",
-  ".accessToken",
-  ".active",
-];
+const itemTransform = ["._id", ".name", ".mobile", ".username"];
 module.exports = new (class indexUserController extends Controller {
   async index(req, res) {
     let query = {};
-    if (req.query.type) {
+    if (req.query.user) {
       try {
-        let type = JSON.parse(req.query.type);
-        query = { ...query, type: { $in: type } };
+        let user = JSON.parse(req.query.user);
+        query = { ...query, user: { $in: user } };
       } catch (err) {
         return this.abort(res, 404, "تایپ وارد شده صحیح نیست", null, "type");
       }

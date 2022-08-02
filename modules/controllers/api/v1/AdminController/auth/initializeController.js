@@ -1,17 +1,21 @@
 const config = require("../../../../../config");
-const controller = require(`${config.path.controller}/controller`);
-
+const controller = require(`${config.path.controller}/Controller`);
 const User = require(`${config.path.model}/User`);
+const { response } = require(`${config.path.helper}/Response`);
+const { transform } = require(`${config.path.helper}/Transform`);
+const itemTransform = [
+  "._id",
+  ".name",
+  ".username",
+  ".email",
+  ".password",
+  ".role",
+  ".mobile",
+];
 
-const { transform } = require(`${config.path.helper}/transform`);
-const { response } = require(`${config.path.helper}/response`);
-const itemTransform = ["._id", ".name", ".provider", ".username",
-".mobile",".contact",".email",".password",".role",".provider",
-".mobile",".contact",".credit",".accessToken",".active"];
-
-module.exports = class initializeController extends controller {
+module.exports = class InitializeController extends controller {
   constructor() {
     super();
-    (this.model = { User }, (this.helper = { response, transform, itemTransform }));
+    (this.model = { User }), (this.helper = { response, transform, itemTransform });
   }
 };

@@ -6,6 +6,6 @@ module.exports = (req, res, next) => {
   const token = req.headers["x-access-token"];
   if (token === registerSuperAdminToken) next();
   else {
-    return unauthorized(res, logcode);
+    return unauthorized(res);
   }
 };

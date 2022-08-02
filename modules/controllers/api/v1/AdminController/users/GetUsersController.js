@@ -1,12 +1,14 @@
 const InitializeController = require("./initializeController");
 module.exports = new (class GetUsersController extends InitializeController {
-  async getUsers(req, res,next) {
+  async getUsers(req, res) {
     try {
       const users = await this.model.User.find({});
-      res.status(200).json({users });
+      if (!users) return this.abort(res, 404, null);
+      return this.helper.response(res, null, 200, users,null,null);
+      // res.status(200).json({ users });
     } catch (err) {
       console.log(err);
-      next(err);
+      return this.abort(res, 500);
     }
   }
 })();

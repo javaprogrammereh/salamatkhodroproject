@@ -37,7 +37,7 @@ router.use("/admin",apiWho,brandRouter);
 
 //*auth
 const authRouter = express.Router();
-authRouter.post("/register",apiSuperAdminRegister,RegisterController.register.bind(RegisterController));
+authRouter.post("/register",RegisterController.register.bind(RegisterController));
 authRouter.post("/login", LoginController.login.bind(LoginController));
 router.use("/auth", authRouter);
 
@@ -45,7 +45,7 @@ router.use("/auth", authRouter);
 const usersRouter = express.Router();
 usersRouter.get("/get-users",GetUsersController.getUsers.bind(GetUsersController));
 usersRouter.put("/update-users/:id",UpdateUserController.updateUser.bind(UpdateUserController));
-router.use("/users", usersRouter);
+router.use("/users",apiWho, usersRouter);
 
 
 module.exports = router;

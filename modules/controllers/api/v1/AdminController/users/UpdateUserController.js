@@ -1,24 +1,17 @@
 const InitializeController = require("./initializeController");
 
 module.exports = new (class UpdateUserController extends InitializeController {
-  async updateUser(req, res, next) {
+  async updateUser(req, res) {
     try {
-      const user = await this.model.User.findById({ _id: req.params.id }).exec();
-      if (!user) {
-        const error = new Error("پستی با این شناسه یافت نشد");
-        error.statusCode = 404;
-        throw error;
-      }
-     else{
-        const user= req.body;
-        // brand.type = type;
-        // await brand.save();
-        await this.model.User.findByIdAndUpdate(req.params.id, user).exec();
-        return res.status(201).json({ message: "  با موفقیت ویرایش شد" });
-      }
+      const user = await this.model.User.findById({
+        _id: req.params.id,
+      }).exec();
+      if (!user) return this.abort(res, 404, null, null, "id");
+      await this.model.User.findByIdAndUpdate(req.params.id, req.body).exec();
+      return this.ok(res, "با موفقیت اپدیت شد");
     } catch (err) {
       console.log(err);
-      next(err);
+      return this.abort(res, 500);
     }
   }
 })();

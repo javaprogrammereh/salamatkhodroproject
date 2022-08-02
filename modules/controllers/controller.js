@@ -1,5 +1,5 @@
 const releasesV = process.env.RELEASES_V;
-module.exports = class Controller {
+module.exports = class controller {
   showValidationErrors(req, res) {
     const errors = req.validationErrors();
     if (errors) {

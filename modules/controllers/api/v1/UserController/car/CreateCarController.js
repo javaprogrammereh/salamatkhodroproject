@@ -1,6 +1,6 @@
 const InitializeController = require("./initializeController");
 module.exports = new (class CreateCarController extends InitializeController {
-  async createCar(req, res, next) {
+  async createCar(req, res) {
     try {
       const values = {
         faName: req.body.faName,
@@ -10,12 +10,11 @@ module.exports = new (class CreateCarController extends InitializeController {
         description: req.body.description,
         brands: req.body.brands,
       };
-      await this.model.Car.create(values).then(() =>
-          res.status(201).json({ message: "پست جدید با موفقیت ساخته شد" })
-        );
+      await this.model.Car.create(values);
+      return this.ok(res, "با موفقیت ثبت شد");
     } catch (err) {
       console.log(err);
-      next();
+      return this.abort(res, 500);
     }
   }
 })();
