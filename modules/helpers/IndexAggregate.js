@@ -9,7 +9,8 @@ module.exports.index = async (req, model, queryData, aggregateData, sort) => {
       { $group: { _id: null, count: { $sum: 1 } } },
       { $project: { _id: 0 } },
     ]);
-    const totalDocs = count[0].count;
+    let totalDocs = 0;
+    if (count[0] && count[0].count) totalDocs = count[0].count;
     if (totalDocs > 0) {
       if (req.query.all) {
         limit = totalDocs;

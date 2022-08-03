@@ -3,48 +3,44 @@ const mongoose = require("mongoose");
 module.exports = new (class IndexController extends InitializeController {
   async index(req, res) {
     try {
-      let query = { userId: req.user._id };
+      req.checkParams("id", "The entered ID is incorrect").isMongoId();
+      const query = { brands: mongoose.Types.ObjectId(req.params.id) };
       let sort = {};
-      let lookUp = [
+      sort = { ...sort, _id: -1 };
+      const queryData = [{ $match: query }];
+      const aggregateData = [
+        { $match: query },
         {
           $lookup: {
-            from: "cars",
-            localField: "carId",
+            from: "brands",
+            localField: "brands",
             foreignField: "_id",
-            as: "carId",
+            as: "brands",
           },
         },
         {
-          $addFields: {
-            user: { $arrayElemAt: ["$carId", 0] },
-          },
-        },
-        {
-          $addFields: {
-            user: { $ifNull: ["$car", null] },
+          $project: {
+            "brands._id": 0,
+            "brands.__v": 0,
+            "brands.updatedAt": 0,
+            "brands.createdAt": 0,
           },
         },
       ];
-      if (req.query.userId) {
-        req.checkQuery("carId", "صحیح نیست").isMongoId();
-        if (this.showValidationErrors(req, res)) return "";
-        query = { ...query, userId: mongoose.Types.ObjectId(req.query.userId) };
-      }
-      let project = {
-        userId: 0,
-        "car.updatedAt": 0,
-        "car.createdAt": 0,
-        "car.__v": 0,
-        "car.faName": 0,
-        "car.enName": 0,
-      };
-      sort = { ...sort, _id: -1 };
-      const queryData = [{ $match: query }];
-      const aggregateData = [{ $match: query }, ...lookUp, { $project: project }];
-      const result = await this.helper.index(req, "car", queryData, aggregateData, sort);
-      if (!result) return this.abort(res, 500, logcode);
-      const Transform = await this.helper.transform(result, this.helper.itemTransform, true);
-      return this.helper.response(res, null, 200, Transform,null,null);
+      const result = await this.helper.index(
+        req,
+        "Car",
+        queryData,
+        aggregateData,
+        sort
+      );
+      if (!result) return this.abort(res, 500);
+      const Transform = await this.helper.transform(
+        result,
+        this.helper.itemTransform,
+        true
+      );
+      return this.helper.response(res, null, 200, Transform, null, null);
     } catch (err) {
       console.log(err);
       return this.abort(res, 500);

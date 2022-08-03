@@ -11,3 +11,4 @@ const BrandSchema = new mongoose.Schema({
 
 BrandSchema.plugin(uniqueValidator);
 module.exports=mongoose.model("Brand",BrandSchema);
+//

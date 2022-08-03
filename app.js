@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const mongoSanitize = require("express-mongo-sanitize");
 var expressValidator = require('express-validator');
 const dotEnv = require('dotenv');
 const connectDB = require('./modules/config/db');
@@ -13,14 +14,18 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ type: "application/json" }));
 app.use(expressValidator());
+app.use(mongoSanitize());
+
 
 
 //*routers
+
 //!   /api/v1/cars/create-car
 //!   /api/v1/cars/delete-post/:id
 //!   /api/v1/cars/get-cars
 //!   /api/v1/cars/single-car/:id
 //!   /api/v1/cars/update-car/:id
+//!   /api/v1/cars/index-car
 app.use("/api/v1/cars", require("./modules/routes/api/user/api-v1"));
 
 //!   /api/v1/admin/create-brand

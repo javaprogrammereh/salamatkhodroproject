@@ -12,5 +12,5 @@ const CarSchema = new Schema({
     description: {type: String, trim: true},
     brands: [{ type: Schema.Types.ObjectId, ref: "Brand",required:false }],    
 });
-// CarSchema.plugin(uniqueValidator);
+// CarSchema.plugin(uniqueValidator);//
 module.exports=mongoose.model("Car",CarSchema);
