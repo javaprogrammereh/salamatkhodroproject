@@ -13,13 +13,13 @@
 					"name": "car",
 					"item": [
 						{
-							"name": "CreatCar",
+							"name": "creat",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n     \"faName\":\"faName\",\r\n      \"enName\":\"enName\",\r\n      \"slug\":\"slug\",\r\n      \"logo\":\"logo\",\r\n      \"description\":\"description\"\r\n}",
+									"raw": "{\r\n     \"faName\":\"car1\",\r\n      \"enName\":\"car1\",\r\n      \"slug\":\"car1\",\r\n      \"logo\":\"car1\",\r\n      \"description\":\"car1\",\r\n      \"brands\":\"62ecdfabde15c6f33ccd0994\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -27,22 +27,22 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v1/cars/create-car",
+									"raw": "{{base_url}}/api/v1/car/create",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cars",
-										"create-car"
+										"car",
+										"create"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "DeleteCar",
+							"name": "delete",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -51,70 +51,70 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v1/cars/delete-post/62e8eed8d0f123d41a374869",
+									"raw": "{{base_url}}/api/v1/car/delete/62eb92ddf95c3520d17d8938",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cars",
-										"delete-post",
-										"62e8eed8d0f123d41a374869"
+										"car",
+										"delete",
+										"62eb92ddf95c3520d17d8938"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "GetCars",
+							"name": "getAll",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v1/cars/get-cars",
+									"raw": "{{base_url}}/api/v1/car/getAll",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cars",
-										"get-cars"
+										"car",
+										"getAll"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "SingleCar",
+							"name": "Single",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v1/cars/single-car/62e90a215f3a175ccc7af0de",
+									"raw": "{{base_url}}/api/v1/car/single/62ecfa30be85e01a3766b515",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cars",
-										"single-car",
-										"62e90a215f3a175ccc7af0de"
+										"car",
+										"single",
+										"62ecfa30be85e01a3766b515"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "UpdateCar",
+							"name": "update",
 							"request": {
 								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n     \"faName\":\"faName\",\r\n      \"enName\":\"enName\",\r\n      \"slug\":\"slug\",\r\n      \"logo\":\"logo\",\r\n      \"description\":\"description\"\r\n}",
+									"raw": "{\r\n     \"faName\":\"car7\",\r\n      \"enName\":\"car7\",\r\n      \"slug\":\"car7\",\r\n      \"logo\":\"car7\",\r\n      \"description\":\"car7\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -122,16 +122,37 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v1/cars/update-car/62e90a215f3a175ccc7af0de",
+									"raw": "{{base_url}}/api/v1/car/update/62ea584bd8a0a67100baae4c",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cars",
-										"update-car",
-										"62e90a215f3a175ccc7af0de"
+										"car",
+										"update",
+										"62ea584bd8a0a67100baae4c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "index",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/car/index/62e8d7e5e4b63709527b2519",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"car",
+										"index",
+										"62e8d7e5e4b63709527b2519"
 									]
 								}
 							},
@@ -148,14 +169,14 @@
 					"name": "brands",
 					"item": [
 						{
-							"name": "CreateBrand",
+							"name": "create",
 							"request": {
 								"auth": {
 									"type": "apikey",
 									"apikey": [
 										{
 											"key": "value",
-											"value": "30e4b163428625a3fe7004152b7af7f1a5cfb57ad553a75cb442b1ed6c7d55c4f2e6da45",
+											"value": "38b4e460478423f4fe2700132c7af7f9f3ccb57ad550ff5cb311e2be3c7d5491f5eede17",
 											"type": "string"
 										},
 										{
@@ -181,7 +202,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\":\"benz\"\r\n}",
+									"raw": "{\r\n    \"type\":\"iran khodro\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -189,29 +210,30 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v1/admin/create-brand",
+									"raw": "{{base_url}}/api/v1/superAdmin/brand/create",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"admin",
-										"create-brand"
+										"superAdmin",
+										"brand",
+										"create"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "GetBrands",
+							"name": "getAll",
 							"request": {
 								"auth": {
 									"type": "apikey",
 									"apikey": [
 										{
 											"key": "value",
-											"value": "30e4b163428625a3fe7004152b7af7f1a5cfb57ad553a75cb442b1ed6c7d55c4f2e6da45",
+											"value": "38b4e460478423f4fe2700132c7af7f9f3ccb57ad550ff5cb311e2be3c7d5491f5eede17",
 											"type": "string"
 										},
 										{
@@ -229,29 +251,30 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v1/admin/select-brands",
+									"raw": "{{base_url}}/api/v1/superAdmin/brand/index",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"admin",
-										"select-brands"
+										"superAdmin",
+										"brand",
+										"index"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "DeleteBrand",
+							"name": "destroy",
 							"request": {
 								"auth": {
 									"type": "apikey",
 									"apikey": [
 										{
 											"key": "value",
-											"value": "30e4b163428625a3fe7004152b7af7f1a5cfb57ad553a75cb442b1ed6c7d55c4f2e6da45",
+											"value": "38b4e460478423f4fe2700132c7af7f9f3ccb57ad550ff5cb311e2be3c7d5491f5eede17",
 											"type": "string"
 										},
 										{
@@ -269,30 +292,31 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v1/admin/delete-brand/62e8d6ccd10cdb1d58c49f68",
+									"raw": "{{base_url}}/api/v1/superAdmin/brand/destroy/62ecdf63de15c6f33ccd0988",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"admin",
-										"delete-brand",
-										"62e8d6ccd10cdb1d58c49f68"
+										"superAdmin",
+										"brand",
+										"destroy",
+										"62ecdf63de15c6f33ccd0988"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "UpdateBrand",
+							"name": "update",
 							"request": {
 								"auth": {
 									"type": "apikey",
 									"apikey": [
 										{
 											"key": "value",
-											"value": "30e4b163428625a3fe7004152b7af7f1a5cfb57ad553a75cb442b1ed6c7d55c4f2e6da45",
+											"value": "38b4e460478423f4fe2700132c7af7f9f3ccb57ad550ff5cb311e2be3c7d5491f5eede17",
 											"type": "string"
 										},
 										{
@@ -311,7 +335,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\":\"irankhodro\"\r\n}",
+									"raw": "{\r\n    \"type\":\"benz\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -319,30 +343,31 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v1/admin/update-brand/62e8d7e5e4b63709527b2519",
+									"raw": "{{base_url}}/api/v1/superAdmin/brand/update/62ecdf63de15c6f33ccd0988",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"admin",
-										"update-brand",
-										"62e8d7e5e4b63709527b2519"
+										"superAdmin",
+										"brand",
+										"update",
+										"62ecdf63de15c6f33ccd0988"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "SingleBrand",
+							"name": "single",
 							"request": {
 								"auth": {
 									"type": "apikey",
 									"apikey": [
 										{
 											"key": "value",
-											"value": "30e4b163428625a3fe7004152b7af7f1a5cfb57ad553a75cb442b1ed6c7d55c4f2e6da45",
+											"value": "38b4e460478423f4fe2700132c7af7f9f3ccb57ad550ff5cb311e2be3c7d5491f5eede17",
 											"type": "string"
 										},
 										{
@@ -360,16 +385,17 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v1/admin/single-brand/62e8d7e5e4b63709527b2519",
+									"raw": "{{base_url}}/api/v1/superAdmin/brand/single/62ecdf63de15c6f33ccd0988",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"admin",
-										"single-brand",
-										"62e8d7e5e4b63709527b2519"
+										"superAdmin",
+										"brand",
+										"single",
+										"62ecdf63de15c6f33ccd0988"
 									]
 								}
 							},
@@ -381,13 +407,13 @@
 					"name": "Auth",
 					"item": [
 						{
-							"name": "Register",
+							"name": "register",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n          \"name\": \"elmira\",\r\n          \"username\": \"elmira\",\r\n          \"email\": \"elmira@gmail.com\",\r\n          \"password\": \"123\",\r\n          \"mobile\": \"09214247039\"\r\n}",
+									"raw": "{\r\n          \"name\": \"admin\",\r\n          \"username\": \"admin\",\r\n          \"email\": \"admin@gmail.com\",\r\n          \"password\": \"111\",\r\n          \"mobile\": \"09214247333\",\r\n          \"role\":\"admin\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -395,13 +421,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v1/auth/register",
+									"raw": "{{base_url}}/api/v1/superAdmin/auth/register",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
+										"superAdmin",
 										"auth",
 										"register"
 									]
@@ -419,7 +446,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n           \"username\": \"elmira\",\r\n          \"email\": \"elmira@gmail.com\",\r\n          \"password\": \"123\"\r\n}",
+									"raw": "{\r\n          \"email\": \"admin@gmail.com\",\r\n          \"password\": \"111\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -427,13 +454,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v1/auth/login",
+									"raw": "{{base_url}}/api/v1/superAdmin/auth/login",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
+										"superAdmin",
 										"auth",
 										"login"
 									]
@@ -447,14 +475,14 @@
 					"name": "users",
 					"item": [
 						{
-							"name": "GetUsers",
+							"name": "getAll",
 							"request": {
 								"auth": {
 									"type": "apikey",
 									"apikey": [
 										{
 											"key": "value",
-											"value": "30e4b163428625a3fe7004152b7af7f1a5cfb57ad553a75cb442b1ed6c7d55c4f2e6da45",
+											"value": "38b4e460478423f4fe2700132c7af7f9f3ccb57ad550ff5cb311e2be3c7d5491f5eede17",
 											"type": "string"
 										},
 										{
@@ -472,29 +500,30 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v1/users/get-users",
+									"raw": "{{base_url}}/api/v1/superAdmin/user/index",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"users",
-										"get-users"
+										"superAdmin",
+										"user",
+										"index"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "UpdateUser",
+							"name": "update",
 							"request": {
 								"auth": {
 									"type": "apikey",
 									"apikey": [
 										{
 											"key": "value",
-											"value": "30e4b163428625a3fe7004152b7af7f1a5cfb57ad553a75cb442b1ed6c7d55c4f2e6da45",
+											"value": "38b4e460478423f4fe2700132c7af7f9f3ccb57ad550ff5cb311e2be3c7d5491f5eede17",
 											"type": "string"
 										},
 										{
@@ -513,7 +542,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "        {\r\n          \"name\": \"eli\",\r\n          \"username\": \"eli\",\r\n          \"mobile\": \"09214247123\"\r\n        \r\n        }",
+									"raw": "        {\r\n          \"name\": \"elmira\",\r\n          \"username\": \"elmira\",\r\n          \"mobile\": \"0924444444\",\r\n          \"email\":\"elmira@gmail.com\",\r\n          \"password\":\"222\",\r\n          \"role\":\"user\"\r\n        }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -521,22 +550,148 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v1/users/update-users/62e8c702cbecf8bfa6725623",
+									"raw": "{{base_url}}/api/v1/superAdmin/user/update/62ecb2217dacd8a5438aaae9",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"users",
-										"update-users",
-										"62e8c702cbecf8bfa6725623"
+										"superAdmin",
+										"user",
+										"update",
+										"62ecb2217dacd8a5438aaae9"
 									]
 								}
 							},
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "share",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "38b4e460478423f4fe2700132c7af7f9f3ccb57ad550ff5cb311e2be3c7d5491f5eede17",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "x-access-token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/token/index",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"token",
+								"index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "38b4e460478423f4fe2700132c7af7f9f3ccb57ad550ff5cb311e2be3c7d5491f5eede17",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "x-access-token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/token/destroy/62ecb4904a014ad3bb09875a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"token",
+								"destroy",
+								"62ecb4904a014ad3bb09875a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "who",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "30b7b531138021f3fe770246287af7fba2c8b57b8709fe5ce616e2ed6d2b0797a4bedc16",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "x-access-token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

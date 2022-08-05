@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
-const BrandSchema = new mongoose.Schema({
+const brandSchema = new mongoose.Schema({
     type:{
         type:String,
         required:true,
@@ -9,6 +9,6 @@ const BrandSchema = new mongoose.Schema({
     },
 });
 
-BrandSchema.plugin(uniqueValidator);
-module.exports=mongoose.model("Brand",BrandSchema);
+brandSchema.plugin(uniqueValidator);
+module.exports=mongoose.model("brand",brandSchema);
 //

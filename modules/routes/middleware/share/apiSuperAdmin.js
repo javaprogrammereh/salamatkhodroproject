@@ -1,24 +1,13 @@
-const config = require("../../config");
+const config = require("../../../config");
 const User = require(`${config.path.model}/user`);
 const Token = require(`${config.path.model}/token`);
-const { unauthorized, response } = require(`${config.path.helper}/response`);
-const { transform } = require(`${config.path.helper}/transform`);
-const itemTransform = [
-  "._id",
-  ".name",
-  ".username",
-  ".mobile",
-  ".email",
-  ".password",
-  ".role",
-];
+const { unauthorized } = require(`${config.path.helper}/response`);
+
 module.exports = async (req, res, next) => {
   try {
-    const token = await Token.findOne({
-      token: req.headers["x-access-token"],
-    }).exec();
+    const token = await Token.findOne({ token: req.headers["x-access-token"] }).exec();
     if (!token) return unauthorized(res);
-    const user = await User.findById({ _id: token.userId }).exec();
+    const user = await User.findOne({ _id: token.userId}).exec();
     if (!user) return unauthorized(res);
     const date = new Date();
     if (token.liveTime < date) {
@@ -32,11 +21,10 @@ module.exports = async (req, res, next) => {
         liveTime.setHours(liveTime.getHours() + 5);
         values = { ...values, liveTime };
       }
-      if (token.lastIp != req.connection.remoteAddress)
-        values = { ...values, lastIp: req.connection.remoteAddress };
+      if (token.lastIp != req.connection.remoteAddress) values = { ...values, lastIp: req.connection.remoteAddress };
       await Token.findByIdAndUpdate(token._id, values).exec();
-      const Transform = await transform(user, itemTransform);
-      response(res, null, 200, Transform, null, null);
+      user.tokenId = token._id;
+      req.user = user;
       next();
     }
   } catch (err) {

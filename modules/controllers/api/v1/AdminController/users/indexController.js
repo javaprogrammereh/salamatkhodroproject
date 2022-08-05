@@ -1,37 +1,24 @@
 const initializeController = require("./initializeController");
-const mongoose = require("mongoose");
-
 module.exports = new (class indexController extends initializeController {
-  async index(req, res) {
-    req.checkParams("id", "The entered ID is incorrect").isMongoId();
-    if (this.showValidationErrors(req, res)) return "";
+  async getAll(req, res) {
     try {
-      const query = { brands: mongoose.Types.ObjectId(req.params.id) };
+      const query = {};
       let sort = {};
       sort = { ...sort, _id: -1 };
       const queryData = [{ $match: query }];
       const aggregateData = [
         { $match: query },
         {
-          $lookup: {
-            from: "brands",
-            localField: "brands",
-            foreignField: "_id",
-            as: "brands",
-          },
-        },
-        {
           $project: {
-            "brands._id": 0,
-            "brands.__v": 0,
-            "brands.updatedAt": 0,
-            "brands.createdAt": 0,
+            "user.__v": 0,
+            "user.updatedAt": 0,
+            "user.createdAt": 0,
           },
         },
       ];
       const result = await this.helper.index(
         req,
-        "car",
+        "user",
         queryData,
         aggregateData,
         sort

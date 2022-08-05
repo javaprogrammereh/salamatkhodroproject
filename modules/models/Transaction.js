@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
-const TransactionSchema = new mongoose.Schema({
+const transactionSchema = new mongoose.Schema({
     transaction: [
         {
             payFor: {type: String},
@@ -13,5 +13,5 @@ const TransactionSchema = new mongoose.Schema({
         }
     ],
 });
-TransactionSchema.plugin(uniqueValidator);
-module.exports=mongoose.model("Transaction",TransactionSchema);
+transactionSchema.plugin(uniqueValidator);
+module.exports=mongoose.model("transaction",transactionSchema);

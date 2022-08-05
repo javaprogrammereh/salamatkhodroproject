@@ -1,8 +1,8 @@
 const expiresInUser = process.env.EXPIRESIN_USER_HOUR;
 const expiresInSuperAdmin = process.env.EXPIRESIN_SUPER_ADMIN_HOUR;
 const config = require("../config");
-const { GenerateToken } = require(`${config.path.helper}/GenerateToken`);
-const Token = require(`${config.path.model}/Token`);
+const { generateToken } = require(`${config.path.helper}/generateToken`);
+const Token = require(`${config.path.model}/token`);
 module.exports.transform = async (result, item, withPaginate = false, type = null, ip = null, deviceName = null) => {
   if (withPaginate) {
     let items = [];
@@ -19,7 +19,7 @@ module.exports.transform = async (result, item, withPaginate = false, type = nul
     }
   } else {
     if (type !== null) {
-      const token = await TokenCreate(result, type, ip, deviceName);
+      const token = await tokenCreate(result, type, ip, deviceName);
       return { ...itemTransform(result, item), ...token };
     } else {
       return itemTransform(result, item);
@@ -35,10 +35,10 @@ module.exports.transform = async (result, item, withPaginate = false, type = nul
       }
     }
   }
-  async function TokenCreate(result, type, ip, deviceName) {
+  async function tokenCreate(result, type, ip, deviceName) {
     try {
       let liveTime = new Date();
-      const token = await GenerateToken();
+      const token = await generateToken();
       let values = { userId: result._id, lastIp: ip, deviceName, token };
       if (type === "user") liveTime.setHours(liveTime.getHours() + Number(expiresInUser));
       if (type === "admin") liveTime.setHours(liveTime.getHours() + Number(expiresInSuperAdmin));

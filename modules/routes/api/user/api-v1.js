@@ -4,24 +4,29 @@ const { Router } = require("express");
 
 const router = new Router();
 
+//*middleware
+const apiSuperAdmin = require(`${config.path.middleware}/superAdmin/apiSuperAdmin`);
+const apiSuperAdminRegister = require(`${config.path.middleware}/superAdmin/apiSuperAdminRegister`);
+const apiWho = require(`${config.path.middleware}/who`);
+
 //*user
-const { user: UserController } = config.path.controllersApi.v1;
+const { user: userController } = config.path.controllersApi.v1;
 
 //*car
-const CreateCarController = require(`${UserController}/car/CreateCarController`);
-const DeleteCarController = require(`${UserController}/car/DeleteCarController`);
-const GetCarsController = require(`${UserController}/car/GetCarsController`);
-const SingleCarController = require(`${UserController}/car/SingleCarController`);
-const UpdateCarController = require(`${UserController}/car/UpdateCarController`);
-const IndexController = require(`${UserController}/car/IndexController`);
+const createController = require(`${userController}/car/createController`);
+const destroyController = require(`${userController}/car/destroyController`);
+const indexAllController = require(`${userController}/car/indexAllController`);
+const singleController = require(`${userController}/car/singleController`);
+const updateController = require(`${userController}/car/updateController`);
+const indexController = require(`${userController}/car/indexController`);
 
-
-router.post("/create-car", CreateCarController.createCar.bind(CreateCarController));
-router.delete("/delete-post/:id", DeleteCarController.destroy.bind(DeleteCarController));
-router.get("/get-cars", GetCarsController.getCars.bind(GetCarsController));
-router.get("/single-car/:id", SingleCarController.singleCar.bind(SingleCarController));
-router.put("/update-car/:id", UpdateCarController.updateCar.bind(UpdateCarController));
-router.get("/index-car/:id", IndexController.index.bind(IndexController));
-
+const carRouter = express.Router();
+carRouter.post("/create", createController.create.bind(createController));
+carRouter.delete("/delete/:id", destroyController.destroy.bind(destroyController));
+carRouter.get("/getAll", indexAllController.getAll.bind(indexAllController));
+carRouter.get("/single/:id", singleController.single.bind(singleController));
+carRouter.put("/update/:id", updateController.update.bind(updateController));
+carRouter.get("/index/:id", indexController.index.bind(indexController));
+router.use("/car", carRouter);
 
 module.exports = router;
